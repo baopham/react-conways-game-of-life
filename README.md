@@ -1,7 +1,7 @@
 
-# Conways Game Of Life (conways-game-of-life)
+# Conway's Game Of Life (conways-game-of-life)
 
-> Conways Game Of Life
+> Conway's Game Of Life
 
 ## Running your project
 
