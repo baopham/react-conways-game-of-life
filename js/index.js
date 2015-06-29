@@ -21760,14 +21760,12 @@ var GameStore = (0, _objectAssign2['default'])({}, _BaseStore2['default'], {
         generations = 0;
 
         var gol = new _libGameOfLifeJs2['default'](rows);
-        console.log(JSON.stringify(rows));
 
         interval = setInterval(function () {
           if (status) {
             gol.nextGeneration();
 
             rows = gol.rows;
-            console.log(JSON.stringify(rows));
 
             generations++;
 
