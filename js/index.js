@@ -21564,6 +21564,8 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 
+var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i['return']) _i['return'](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError('Invalid attempt to destructure non-iterable instance'); } }; })();
+
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
@@ -21634,9 +21636,10 @@ var GameOfLife = (function () {
       var aliveNeighbourCount = 0;
 
       for (var i = 0; i < neighbourCoords.length; i++) {
-        var coord = neighbourCoords[i];
-        var _x = coord[0];
-        var _y = coord[1];
+        var _neighbourCoords$i = _slicedToArray(neighbourCoords[i], 2);
+
+        var _x = _neighbourCoords$i[0];
+        var _y = _neighbourCoords$i[1];
 
         if (_y >= this.originalRows.length || _y < 0) continue;
         if (_x >= this.originalRows[0].length || _x < 0) continue;
@@ -21790,15 +21793,71 @@ module.exports = exports['default'];
 
 
 },{"../Constants":170,"../Dispatcher":171,"../lib/GameOfLife.js":180,"./BaseStore":181,"object-assign":7}],183:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _boardHelpersJs = require('./board-helpers.js');
+
+var _boardHelpersJs2 = _interopRequireDefault(_boardHelpersJs);
+
+exports['default'] = {
+
+  rows: function rows() {
+    var numrows = 18,
+        numcols = 18;
+    var rows = _boardHelpersJs2['default'].generateEmptyBoard(numrows, numcols);
+    var aliveCoords = [[5, 7], [5, 9], [4, 9], [7, 8], [8, 9], [9, 9], [10, 9]];
+
+    _boardHelpersJs2['default'].fillinAliveCells(rows, aliveCoords);
+
+    return rows;
+  }
+
+};
+module.exports = exports['default'];
+
+
+},{"./board-helpers.js":184}],184:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; })();
+
 exports["default"] = {
 
-  rows: function rows() {
-    return [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
+  generateEmptyBoard: function generateEmptyBoard(numrows, numcols) {
+
+    var rows = [];
+    for (var y = 0; y < numrows; y++) {
+      var cols = [];
+
+      for (var x = 0; x < numcols; x++) {
+        cols.push(0);
+      }
+
+      rows.push(cols);
+    }
+
+    return rows;
+  },
+
+  fillinAliveCells: function fillinAliveCells(rows, aliveCoords) {
+    for (var i = 0; i < aliveCoords.length; i++) {
+      var _aliveCoords$i = _slicedToArray(aliveCoords[i], 2);
+
+      var x = _aliveCoords$i[0];
+      var y = _aliveCoords$i[1];
+
+      rows[y][x] = 1;
+    }
   }
 
 };
