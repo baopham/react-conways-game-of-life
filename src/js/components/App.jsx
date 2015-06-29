@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import Board from './Board.jsx';
+import GenerationCount from './GenerationCount.jsx';
 import ActionButton from './ActionButton.jsx';
 
 export default React.createClass({
@@ -17,6 +18,7 @@ export default React.createClass({
 
     return (
       <div className="container">
+        <GenerationCount />
         <Board />
         <ActionButton />
       </div>

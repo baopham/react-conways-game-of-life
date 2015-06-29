@@ -1,4 +1,5 @@
-import React from 'react/addons';
+import React from 'react';
+import classNames from 'classnames';
 
 export default React.createClass({
 
@@ -9,8 +10,7 @@ export default React.createClass({
   },
 
   render() {
-    let cx = React.addons.classSet;
-    let classes = cx({
+    let classes = classNames({
       'danger': this.props.alive
     });
 

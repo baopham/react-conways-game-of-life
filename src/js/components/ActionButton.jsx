@@ -14,7 +14,7 @@ export default React.createClass({
     return GameActions.start();
   },
 
-  _onChange() {
+  _onStoreChange() {
     this.setState(GameStore.getCurrentState());
   },
 
@@ -23,11 +23,11 @@ export default React.createClass({
   },
 
   componentDidMount() {
-    GameStore.addChangeListener(this._onChange);
+    GameStore.addChangeListener(this._onStoreChange);
   },
 
   componentWillUnmount() {
-    GameStore.removeChangeListener(this._onChange);
+    GameStore.removeChangeListener(this._onStoreChange);
   },
 
   render() {

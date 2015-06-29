@@ -4,72 +4,69 @@ import GameActions from '../actions/GameActions.js';
 import Cell from './Cell.jsx';
 import Table from 'react-bootstrap/lib/Table';
 
+import Board from '../util/board-glider.js';
+
 export default React.createClass({
 
-  getDefaultProps() {
-    return {
-      numrows: 20,
-      numcols: 20
-    };
-  },
-
   getInitialState() {
-    let state = this._getRows();
+    let rows = Board.rows();
+
+    let state = {
+      numrows: rows.length,
+      numcols: rows[0].length,
+      rows: rows
+    };
+
     GameActions.setRows(state.rows);
+
     return state;
   },
 
-  _getRows() {
-    let {numrows, numcols} = this.props;
-
+  _getRows(numrows, numcols) {
     let rows = [];
 
     for (let r = 0; r < numrows; r++) {
-      let row = {
-        key: r,
-        cols: []
-      }
-      rows.push(row);
+      let row = [];
 
       for (let c = 0; c < numcols; c++) {
-        row.cols.push({
-          alive: this._randomAlive(),
-          key: c
-        });
+        row.push(this._randomAlive());
       }
+
+      rows.push(row);
     }
 
-    return {
-      rows: rows
-    };
+    return rows;
   },
 
   _randomAlive() {
-    return !!Math.round(Math.random());
+    return Math.round(Math.random());
   },
 
-  _onChange() {
+  _onStoreChange() {
     this.setState(GameStore.getRows());
   },
 
   componentDidMount() {
-    GameStore.addChangeListener(this._onChange);
+    GameStore.addChangeListener(this._onStoreChange);
   },
 
   componentWillUnmount() {
-    GameStore.removeChangeListener(this._onChange);
+    GameStore.removeChangeListener(this._onStoreChange);
   },
 
   render() {
     let {rows} = this.state;
+    let tableWidth = rows[0].length * 30;
+
+    tableWidth = tableWidth > 1000 ? '100%' : tableWidth + 'px !important';
 
     return (
-      <Table>
-        {rows.map(row =>
-          <tr key={row.key}>
+      <Table style={{width: tableWidth}} className="table-bordered">
+        {rows.map((cols, i) =>
+          <tr key={i}>
 
-            {row.cols.map(col =>
-              <Cell key={col.key} alive={col.alive} />
+            {cols.map((alive, j) =>
+              <Cell key={j} alive={alive} />
             )}
 
           </tr>

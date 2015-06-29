@@ -3,9 +3,11 @@ import Constants from '../Constants';
 import BaseStore from './BaseStore';
 import assign from 'object-assign';
 import GameOfLife from '../lib/GameOfLife.js';
+import BoardHelpers from '../util/board-helpers.js';
 
 // data storage
 let status = false;
+let generations = 0;
 let rows = [];
 let interval = null;
 
@@ -19,7 +21,8 @@ const GameStore = assign({}, BaseStore, {
   getCurrentState() {
     return {
       status: status,
-      text: status ? 'Stop' : 'Start'
+      text: status ? 'Stop' : 'Start',
+      generations: generations
     };
   },
 
@@ -36,14 +39,23 @@ const GameStore = assign({}, BaseStore, {
 
       case Constants.ActionTypes.STARTED:
         status = true;
+        generations = 0;
+
+        let gol = new GameOfLife(rows);
+        console.log(JSON.stringify(rows));
 
         interval = setInterval(function () {
           if (status) {
-            GameOfLife.run(rows);
+            gol.nextGeneration();
+
+            rows = gol.rows;
+            console.log(JSON.stringify(rows));
+
+            generations++;
 
             GameStore.emitChange();
           }
-        }, 1000);
+        }, 500);
         break;
 
       case Constants.ActionTypes.STOPPED:
