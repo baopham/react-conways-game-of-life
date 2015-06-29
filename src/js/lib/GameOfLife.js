@@ -69,9 +69,7 @@ const GameOfLife = class {
     let aliveNeighbourCount = 0;
 
     for (let i = 0; i < neighbourCoords.length; i++) {
-      let coord = neighbourCoords[i];
-      let x = coord[0];
-      let y = coord[1];
+      let [x, y] = neighbourCoords[i];
 
       if (y >= this.originalRows.length || y < 0) continue;
       if (x >= this.originalRows[0].length || x < 0) continue;
