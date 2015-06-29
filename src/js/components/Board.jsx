@@ -4,10 +4,12 @@ import GameActions from '../actions/GameActions.js';
 import Cell from './Cell.jsx';
 import Table from 'react-bootstrap/lib/Table';
 
+import Board from '../util/board-acorn.js';
+
 export default React.createClass({
 
   getInitialState() {
-    let rows = this._getRows(10, 10);
+    let rows = Board.rows();
 
     let state = {
       numrows: rows.length,
