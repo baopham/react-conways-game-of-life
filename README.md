@@ -17,6 +17,11 @@ If you prefer to just build without the live reload and build-on-each-change wat
 $ npm run build
 ```
 
+## Running test
+
+```bash
+$ npm test
+```
 
 ## Generating Additional Code
 
