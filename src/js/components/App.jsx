@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react';
 import Board from './Board.jsx';
 import GenerationCount from './GenerationCount.jsx';
 import ActionButton from './ActionButton.jsx';
+import PageHeader from 'react-bootstrap/lib/PageHeader';
 
 export default React.createClass({
   propTypes: {
@@ -9,18 +10,23 @@ export default React.createClass({
   },
 
   getDefaultProps() {
-    return {
-      tasks: []
-    }
+    return {};
   },
 
   render() {
 
     return (
       <div className="container">
-        <GenerationCount />
+        <PageHeader>
+          Conway's Game of Life
+        </PageHeader>
+
         <Board />
+
+        <GenerationCount />
+
         <ActionButton />
+
       </div>
     );
 
