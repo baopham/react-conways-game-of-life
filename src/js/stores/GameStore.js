@@ -3,7 +3,6 @@ import Constants from '../Constants';
 import BaseStore from './BaseStore';
 import assign from 'object-assign';
 import GameOfLife from '../lib/GameOfLife.js';
-import BoardHelpers from '../util/board-helpers.js';
 
 // data storage
 let status = false;
