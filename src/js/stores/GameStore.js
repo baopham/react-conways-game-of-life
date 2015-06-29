@@ -41,14 +41,12 @@ const GameStore = assign({}, BaseStore, {
         generations = 0;
 
         let gol = new GameOfLife(rows);
-        console.log(JSON.stringify(rows));
 
         interval = setInterval(function () {
           if (status) {
             gol.nextGeneration();
 
             rows = gol.rows;
-            console.log(JSON.stringify(rows));
 
             generations++;
 
