@@ -4,12 +4,10 @@ import GameActions from '../actions/GameActions.js';
 import Cell from './Cell.jsx';
 import Table from 'react-bootstrap/lib/Table';
 
-import Board from '../util/board-glider.js';
-
 export default React.createClass({
 
   getInitialState() {
-    let rows = Board.rows();
+    let rows = this._getRows(10, 10);
 
     let state = {
       numrows: rows.length,
