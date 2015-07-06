@@ -14,6 +14,7 @@ const GameOfLife = class {
    */
   constructor(rows) {
     this.rows = rows;
+    this.live = null;
   }
 
   cloneRows() {
@@ -32,6 +33,7 @@ const GameOfLife = class {
   nextGeneration() {
 
     this.originalRows = this.cloneRows();
+    this.live = 0;
 
     for (let y = 0; y < this.rows.length; y++) {
       let cols = this.rows[y];
@@ -40,13 +42,16 @@ const GameOfLife = class {
         let aliveNeighbourCount = this.getAliveNeighbourCount(x, y);
 
         if (cell) {
+          this.live++;
           if (aliveNeighbourCount < 2 || aliveNeighbourCount > 3) {
             this.rows[y][x] = 0;
+            this.live--;
           }
         }
         else {
           if (aliveNeighbourCount == 3) {
             this.rows[y][x] = 1;
+            this.live++;
           }
         }
       }

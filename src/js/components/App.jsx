@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import Board from './Board.jsx';
-import GenerationCount from './GenerationCount.jsx';
+import GameStatus from './GameStatus.jsx';
 import ActionButton from './ActionButton.jsx';
 import PageHeader from 'react-bootstrap/lib/PageHeader';
 
@@ -23,7 +23,7 @@ export default React.createClass({
 
         <Board />
 
-        <GenerationCount />
+        <GameStatus />
 
         <ActionButton />
 

@@ -20,11 +20,12 @@ export default React.createClass({
   },
 
   render() {
-    let {generations} = this.state;
+    let {generations, live} = this.state;
 
     return (
       <Alert bsStyle="success">
-        Generation count: {generations}
+        Generation count: {generations},
+        Live cells: {live}
       </Alert>
     );
   }

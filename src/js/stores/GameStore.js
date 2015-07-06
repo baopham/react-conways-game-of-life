@@ -5,24 +5,25 @@ import assign from 'object-assign';
 import GameOfLife from '../lib/GameOfLife.js';
 
 // data storage
-let status = false;
-let generations = 0;
-let rows = [];
+let state = {
+  status: false,
+  generations: 0,
+  rows: [],
+  live: 0
+};
+
 let interval = null;
 
 // Facebook style store creation.
 const GameStore = assign({}, BaseStore, {
   // public methods used by Controller-View to operate on data
   getRows() {
-    return rows;
+    return state.rows;
   },
 
   getCurrentState() {
-    return {
-      status: status,
-      text: status ? 'Stop' : 'Start',
-      generations: generations
-    };
+    state.text = state.status ? 'Stop' : 'Start';
+    return state;
   },
 
   // register store with dispatcher, allowing actions to flow through
@@ -31,24 +32,25 @@ const GameStore = assign({}, BaseStore, {
 
     switch (action.type) {
       case Constants.ActionTypes.ROWS_SET:
-        rows = action.rows;
+        state.rows = action.rows;
 
         GameStore.emitChange();
         break;
 
       case Constants.ActionTypes.STARTED:
-        status = true;
-        generations = 0;
+        state.status = true;
+        state.generations = 0;
 
-        let gol = new GameOfLife(rows);
+        let gol = new GameOfLife(state.rows);
 
         interval = setInterval(function () {
-          if (status) {
+          if (state.status) {
             gol.nextGeneration();
 
-            rows = gol.rows;
+            state.rows = gol.rows;
+            state.live = gol.live;
 
-            generations++;
+            state.generations++;
 
             GameStore.emitChange();
           }
@@ -56,7 +58,7 @@ const GameStore = assign({}, BaseStore, {
         break;
 
       case Constants.ActionTypes.STOPPED:
-        status = false;
+        state.status = false;
 
         clearInterval(interval);
 

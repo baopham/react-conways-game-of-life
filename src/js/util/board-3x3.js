@@ -10,28 +10,40 @@ export default {
   },
 
   firstGeneration() {
-    return [
+    let rows = [
       [1, 1, 0],
       [1, 1, 0],
       [0, 1, 0]
     ];
+
+    let live = 5;
+
+    return [rows, live];
   },
 
   secondGeneration() {
-    return [
+    let rows = [
       [1, 1, 0],
       [0, 0, 1],
       [1, 1, 0]
     ];
+
+    let live = 5;
+
+    return [rows, live];
   },
 
   thirdGeneration() {
-    return [
+    let rows = [
       [0, 1, 0],
       [0, 0, 1],
       [0, 1, 0]
     ];
-  },
+
+    let live = 3;
+
+    return [rows, live];
+  }
 
 };
 
