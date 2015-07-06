@@ -3,6 +3,7 @@ import Board from './Board.jsx';
 import GameStatus from './GameStatus.jsx';
 import ActionButtons from './ActionButtons.jsx';
 import PageHeader from 'react-bootstrap/lib/PageHeader';
+import Footer from './Footer.jsx';
 
 export default React.createClass({
   render() {
@@ -18,6 +19,8 @@ export default React.createClass({
         <GameStatus />
 
         <ActionButtons />
+
+        <Footer />
 
       </div>
     );
