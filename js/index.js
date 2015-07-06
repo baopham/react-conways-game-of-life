@@ -21307,7 +21307,7 @@ exports['default'] = _react2['default'].createClass({
 module.exports = exports['default'];
 
 
-},{"./PlayPauseButton.jsx":180,"./ResetButton.jsx":181,"./StepButton.jsx":182,"react":170,"react-bootstrap/lib/ButtonGroup":11}],175:[function(require,module,exports){
+},{"./PlayPauseButton.jsx":181,"./ResetButton.jsx":182,"./StepButton.jsx":183,"react":170,"react-bootstrap/lib/ButtonGroup":11}],175:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -21336,6 +21336,10 @@ var _reactBootstrapLibPageHeader = require('react-bootstrap/lib/PageHeader');
 
 var _reactBootstrapLibPageHeader2 = _interopRequireDefault(_reactBootstrapLibPageHeader);
 
+var _FooterJsx = require('./Footer.jsx');
+
+var _FooterJsx2 = _interopRequireDefault(_FooterJsx);
+
 exports['default'] = _react2['default'].createClass({
   displayName: 'App',
 
@@ -21351,14 +21355,15 @@ exports['default'] = _react2['default'].createClass({
       ),
       _react2['default'].createElement(_BoardJsx2['default'], null),
       _react2['default'].createElement(_GameStatusJsx2['default'], null),
-      _react2['default'].createElement(_ActionButtonsJsx2['default'], null)
+      _react2['default'].createElement(_ActionButtonsJsx2['default'], null),
+      _react2['default'].createElement(_FooterJsx2['default'], null)
     );
   }
 });
 module.exports = exports['default'];
 
 
-},{"./ActionButtons.jsx":174,"./Board.jsx":177,"./GameStatus.jsx":179,"react":170,"react-bootstrap/lib/PageHeader":12}],176:[function(require,module,exports){
+},{"./ActionButtons.jsx":174,"./Board.jsx":177,"./Footer.jsx":179,"./GameStatus.jsx":180,"react":170,"react-bootstrap/lib/PageHeader":12}],176:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -21481,7 +21486,7 @@ exports['default'] = _react2['default'].createClass({
 module.exports = exports['default'];
 
 
-},{"../actions/GameActions.js":173,"../stores/GameStore.js":186,"../util/board-acorn.js":187,"./Cell.jsx":178,"react":170,"react-bootstrap/lib/Table":13}],178:[function(require,module,exports){
+},{"../actions/GameActions.js":173,"../stores/GameStore.js":187,"../util/board-acorn.js":188,"./Cell.jsx":178,"react":170,"react-bootstrap/lib/Table":13}],178:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -21524,6 +21529,47 @@ module.exports = exports['default'];
 
 
 },{"classnames":3,"react":170}],179:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+exports["default"] = _react2["default"].createClass({
+  displayName: "Footer",
+
+  render: function render() {
+    return _react2["default"].createElement(
+      "footer",
+      null,
+      _react2["default"].createElement("hr", null),
+      _react2["default"].createElement(
+        "div",
+        { className: "container" },
+        _react2["default"].createElement(
+          "p",
+          { className: "text-center" },
+          _react2["default"].createElement(
+            "a",
+            { target: "_blank",
+              href: "https://github.com/baopham/react-conways-game-of-life" },
+            "baopham/react-conways-game-of-life"
+          )
+        )
+      )
+    );
+  }
+});
+module.exports = exports["default"];
+
+
+},{"react":170}],180:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -21581,7 +21627,7 @@ exports['default'] = _react2['default'].createClass({
 module.exports = exports['default'];
 
 
-},{"../stores/GameStore.js":186,"react":170,"react-bootstrap/lib/Alert":8}],180:[function(require,module,exports){
+},{"../stores/GameStore.js":187,"react":170,"react-bootstrap/lib/Alert":8}],181:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -21655,7 +21701,7 @@ exports['default'] = _react2['default'].createClass({
 module.exports = exports['default'];
 
 
-},{"../actions/GameActions.js":173,"../stores/GameStore.js":186,"react":170,"react-bootstrap/lib/Button":10}],181:[function(require,module,exports){
+},{"../actions/GameActions.js":173,"../stores/GameStore.js":187,"react":170,"react-bootstrap/lib/Button":10}],182:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -21694,7 +21740,7 @@ exports['default'] = _react2['default'].createClass({
 module.exports = exports['default'];
 
 
-},{"../actions/GameActions.js":173,"react":170,"react-bootstrap/lib/Button":10}],182:[function(require,module,exports){
+},{"../actions/GameActions.js":173,"react":170,"react-bootstrap/lib/Button":10}],183:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -21733,7 +21779,7 @@ exports['default'] = _react2['default'].createClass({
 module.exports = exports['default'];
 
 
-},{"../actions/GameActions.js":173,"react":170,"react-bootstrap/lib/Button":10}],183:[function(require,module,exports){
+},{"../actions/GameActions.js":173,"react":170,"react-bootstrap/lib/Button":10}],184:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -21749,7 +21795,7 @@ var _componentsAppContainerJsx2 = _interopRequireDefault(_componentsAppContainer
 _react2['default'].render(_react2['default'].createElement(_componentsAppContainerJsx2['default'], null), document.getElementById('main'));
 
 
-},{"./components/AppContainer.jsx":176,"react":170}],184:[function(require,module,exports){
+},{"./components/AppContainer.jsx":176,"react":170}],185:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -21917,7 +21963,7 @@ exports['default'] = GameOfLife;
 module.exports = exports['default'];
 
 
-},{}],185:[function(require,module,exports){
+},{}],186:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -21954,7 +22000,7 @@ exports['default'] = (0, _objectAssign2['default'])({}, _events.EventEmitter.pro
 module.exports = exports['default'];
 
 
-},{"../Constants":171,"events":1,"object-assign":7}],186:[function(require,module,exports){
+},{"../Constants":171,"events":1,"object-assign":7}],187:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -22088,7 +22134,7 @@ exports['default'] = GameStore;
 module.exports = exports['default'];
 
 
-},{"../Constants":171,"../Dispatcher":172,"../lib/GameOfLife.js":184,"../util/helpers.js":188,"./BaseStore":185,"object-assign":7}],187:[function(require,module,exports){
+},{"../Constants":171,"../Dispatcher":172,"../lib/GameOfLife.js":185,"../util/helpers.js":189,"./BaseStore":186,"object-assign":7}],188:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -22116,7 +22162,7 @@ exports["default"] = {
 module.exports = exports["default"];
 
 
-},{}],188:[function(require,module,exports){
+},{}],189:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -22132,4 +22178,4 @@ exports["default"] = {
 module.exports = exports["default"];
 
 
-},{}]},{},[183]);
+},{}]},{},[184]);
