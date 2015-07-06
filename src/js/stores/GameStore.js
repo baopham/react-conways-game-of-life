@@ -63,7 +63,7 @@ const GameStore = assign({}, BaseStore, {
 
             GameStore.emitChange();
           }
-        }, 500);
+        }, 100);
         break;
 
       case Constants.ActionTypes.STOPPED:
