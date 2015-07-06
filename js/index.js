@@ -22091,7 +22091,7 @@ var GameStore = (0, _objectAssign2['default'])({}, _BaseStore2['default'], {
 
             GameStore.emitChange();
           }
-        }, 500);
+        }, 100);
         break;
 
       case _Constants2['default'].ActionTypes.STOPPED:
