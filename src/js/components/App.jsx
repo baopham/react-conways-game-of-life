@@ -1,18 +1,10 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
 import Board from './Board.jsx';
 import GameStatus from './GameStatus.jsx';
-import ActionButton from './ActionButton.jsx';
+import ActionButtons from './ActionButtons.jsx';
 import PageHeader from 'react-bootstrap/lib/PageHeader';
 
 export default React.createClass({
-  propTypes: {
-
-  },
-
-  getDefaultProps() {
-    return {};
-  },
-
   render() {
 
     return (
@@ -25,7 +17,7 @@ export default React.createClass({
 
         <GameStatus />
 
-        <ActionButton />
+        <ActionButtons />
 
       </div>
     );

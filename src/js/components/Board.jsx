@@ -54,11 +54,15 @@ export default React.createClass({
     GameStore.removeChangeListener(this._onStoreChange);
   },
 
+  _tableWidth(numcols) {
+    let tableWidth = numcols * 30;
+
+    return tableWidth > 1000 ? '100%' : tableWidth + 'px !important';
+  },
+
   render() {
     let {rows} = this.state;
-    let tableWidth = rows[0].length * 30;
-
-    tableWidth = tableWidth > 1000 ? '100%' : tableWidth + 'px !important';
+    let tableWidth = this._tableWidth(rows[0].length);
 
     return (
       <Table style={{width: tableWidth}} className="table-bordered">

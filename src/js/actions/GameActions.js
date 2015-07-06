@@ -14,6 +14,18 @@ export default {
     });
   },
 
+  step() {
+    Dispatcher.handleViewAction({
+      type: Constants.ActionTypes.STEPPED
+    });
+  },
+
+  reset() {
+    Dispatcher.handleViewAction({
+      type: Constants.ActionTypes.RESET
+    });
+  },
+
   setRows(rows) {
     Dispatcher.handleViewAction({
       type: Constants.ActionTypes.ROWS_SET,

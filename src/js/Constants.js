@@ -9,6 +9,8 @@ export default {
     TASK_ADDED: null,
     STARTED: null,
     STOPPED: null,
+    STEPPED: null,
+    RESET: null,
     ROWS_SET: null
   }),
 
