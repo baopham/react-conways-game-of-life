@@ -3,27 +3,30 @@ import Constants from '../Constants';
 import BaseStore from './BaseStore';
 import assign from 'object-assign';
 import GameOfLife from '../lib/GameOfLife.js';
+import Helpers from '../util/helpers.js';
 
 // data storage
 let state = initialState();
 let interval = null;
 let gol = null;
-let initialRows = [];
+let initialBoard = {};
 
 function initialState() {
+  gol = null;
+  interval = null;
   return {
     status: false,
     generations: 0,
-    rows: [],
-    live: 0
+    board: initialBoard,
+    alive: 0
   };
 }
 
 // Facebook style store creation.
 const GameStore = assign({}, BaseStore, {
   // public methods used by Controller-View to operate on data
-  getRows() {
-    return state.rows;
+  getBoard() {
+    return state.board;
   },
 
   getCurrentState() {
@@ -36,9 +39,9 @@ const GameStore = assign({}, BaseStore, {
     let action = payload.action;
 
     switch (action.type) {
-      case Constants.ActionTypes.ROWS_SET:
-        state.rows = action.rows;
-        initialRows = action.rows;
+      case Constants.ActionTypes.BOARD_SET:
+        state.board = action.board;
+        initialBoard = Helpers.clone(action.board);
 
         GameStore.emitChange();
         break;
@@ -47,14 +50,14 @@ const GameStore = assign({}, BaseStore, {
         state.status = true;
         state.generations = state.generations || 0;
 
-        gol = gol || new GameOfLife(state.rows);
+        gol = gol || new GameOfLife(state.board);
 
         interval = setInterval(function () {
           if (state.status) {
             gol.nextGeneration();
 
-            state.rows = gol.rows;
-            state.live = gol.live;
+            state.board.aliveCoords = gol.board.aliveCoords;
+            state.alive = gol.alive;
 
             state.generations++;
 
@@ -72,14 +75,15 @@ const GameStore = assign({}, BaseStore, {
         break;
 
       case Constants.ActionTypes.STEPPED:
+        clearInterval(interval);
         state.status = true;
         state.generations = state.generations || 0;
 
-        gol = gol || new GameOfLife(state.rows);
+        gol = gol || new GameOfLife(state.board);
         gol.nextGeneration();
 
-        state.rows = gol.rows;
-        state.live = gol.live;
+        state.board.aliveCoords = gol.board.aliveCoords;
+        state.alive = gol.alive;
 
         state.generations++;
 
@@ -89,7 +93,9 @@ const GameStore = assign({}, BaseStore, {
         break;
 
       case Constants.ActionTypes.RESET:
+        clearInterval(interval);
         state = initialState();
+        state.board = initialBoard;
         GameStore.emitChange();
         break;
     }

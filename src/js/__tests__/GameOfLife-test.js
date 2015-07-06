@@ -8,40 +8,36 @@ var Board = require('../util/board-3x3.js');
 describe('Game Of Life for 3x3 board', function () {
 
   it('generates correct first generation', function () {
-    let gol = new GameOfLife(Board.rows());
+    let gol = new GameOfLife(Board.board());
 
     gol.nextGeneration();
 
-    let expectedRows, expectedLive;
-    [expectedRows, expectedLive] = Board.firstGeneration();
+    let {aliveCoords} = Board.firstGeneration();
 
-    expect(gol.rows).toEqual(expectedRows);
+    expect(gol.board.aliveCoords).toEqual(aliveCoords);
   });
 
   it('generates correct second generation', function () {
-    let gol = new GameOfLife(Board.rows());
+    let gol = new GameOfLife(Board.board());
 
     gol.nextGeneration();
     gol.nextGeneration();
 
-    let expectedRows, expectedLive;
-    [expectedRows, expectedLive] = Board.secondGeneration();
+    let {aliveCoords} = Board.secondGeneration();
 
-    expect(gol.rows).toEqual(expectedRows);
+    expect(gol.board.aliveCoords).toEqual(aliveCoords);
   });
 
   it('generates correct third generation', function () {
-    let gol = new GameOfLife(Board.rows());
+    let gol = new GameOfLife(Board.board());
 
     gol.nextGeneration();
     gol.nextGeneration();
     gol.nextGeneration();
 
-    let expectedRows, expectedLive;
+    let {aliveCoords} = Board.thirdGeneration();
 
-    [expectedRows, expectedLive] = Board.thirdGeneration();
-
-    expect(gol.rows).toEqual(expectedRows);
+    expect(gol.board.aliveCoords).toEqual(aliveCoords);
   });
 
 });
@@ -49,30 +45,30 @@ describe('Game Of Life for 3x3 board', function () {
 describe('Game Of Life getting number of live cells for 3x3 board', function () {
 
   it('has correct number of live cells for first generation', function () {
-    let gol = new GameOfLife(Board.rows());
+    let gol = new GameOfLife(Board.board());
 
     gol.nextGeneration();
 
-    [expectedRows, expectedLive] = Board.firstGeneration();
+    let {aliveCoords, alive} = Board.firstGeneration();
 
-    expect(gol.live).toEqual(expectedLive);
+    expect(gol.alive).toEqual(alive);
   });
 
   it('has correct number of live cells for second generation', function () {
-    let gol = new GameOfLife(Board.rows());
+    let gol = new GameOfLife(Board.board());
 
     gol.nextGeneration();
     gol.nextGeneration();
 
     let expectedRows, expectedLive;
 
-    [expectedRows, expectedLive] = Board.secondGeneration();
+    let {aliveCoords, alive} = Board.secondGeneration();
 
-    expect(gol.live).toEqual(expectedLive);
+    expect(gol.alive).toEqual(alive);
   });
 
   it('has correct number of live cells for third generation', function () {
-    let gol = new GameOfLife(Board.rows());
+    let gol = new GameOfLife(Board.board());
 
     gol.nextGeneration();
     gol.nextGeneration();
@@ -80,10 +76,9 @@ describe('Game Of Life getting number of live cells for 3x3 board', function () 
 
     let expectedRows, expectedLive;
 
-    [expectedRows, expectedLive] = Board.thirdGeneration();
+    let {aliveCoords, alive} = Board.thirdGeneration();
 
-    expect(gol.live).toEqual(expectedLive);
-
+    expect(gol.alive).toEqual(alive);
   });
 
 });

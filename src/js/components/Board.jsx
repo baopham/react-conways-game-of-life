@@ -9,41 +9,17 @@ import Board from '../util/board-acorn.js';
 export default React.createClass({
 
   getInitialState() {
-    let rows = Board.rows();
+    let state = Board.board();
+    state.rows = Array(state.numrows).join(1).split('');
+    state.cols = Array(state.numcols).join(1).split('');
 
-    let state = {
-      numrows: rows.length,
-      numcols: rows[0].length,
-      rows: rows
-    };
-
-    GameActions.setRows(state.rows);
+    GameActions.setBoard(state);
 
     return state;
   },
 
-  _getRows(numrows, numcols) {
-    let rows = [];
-
-    for (let r = 0; r < numrows; r++) {
-      let row = [];
-
-      for (let c = 0; c < numcols; c++) {
-        row.push(this._randomAlive());
-      }
-
-      rows.push(row);
-    }
-
-    return rows;
-  },
-
-  _randomAlive() {
-    return Math.round(Math.random());
-  },
-
   _onStoreChange() {
-    this.setState(GameStore.getRows());
+    this.setState(GameStore.getBoard());
   },
 
   componentDidMount() {
@@ -60,17 +36,21 @@ export default React.createClass({
     return tableWidth > 1000 ? '100%' : tableWidth + 'px !important';
   },
 
+  _isAlive(x, y, aliveCoords) {
+    return aliveCoords[y] !== undefined && aliveCoords[y][x] !== undefined;
+  },
+
   render() {
-    let {rows} = this.state;
-    let tableWidth = this._tableWidth(rows[0].length);
+    let {rows, cols, aliveCoords} = this.state;
+    let tableWidth = this._tableWidth(cols.length);
 
     return (
       <Table style={{width: tableWidth}} className="table-bordered">
-        {rows.map((cols, i) =>
-          <tr key={i}>
+        {rows.map((v, y) =>
+          <tr key={y}>
 
-            {cols.map((alive, j) =>
-              <Cell key={j} alive={alive} />
+            {cols.map((vv, x) =>
+              <Cell key={x} alive={this._isAlive(x, y, aliveCoords)} />
             )}
 
           </tr>

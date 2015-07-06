@@ -11,7 +11,7 @@ export default {
     STOPPED: null,
     STEPPED: null,
     RESET: null,
-    ROWS_SET: null
+    BOARD_SET: null
   }),
 
   ActionSources: keyMirror({

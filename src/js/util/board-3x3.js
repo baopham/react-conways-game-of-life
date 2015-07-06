@@ -1,48 +1,80 @@
 
 export default {
 
-  rows() {
-    return [
-      [1, 0, 0],
-      [1, 1, 0],
-      [0, 0, 1]
-    ];
+  /**
+   * Board:
+   *   [1, 0, 0],
+   *   [1, 1, 0],
+   *   [0, 0, 1]
+   */
+  board() {
+    return {
+      numrows: 3,
+      numcols: 3,
+      aliveCoords: {
+        0: {0: null},
+        1: {0: null, 1: null},
+        2: {2: null}
+      },
+      alive: 4
+    };
   },
 
+  /**
+   * Board:
+   *   [1, 1, 0],
+   *   [1, 1, 0],
+   *   [0, 1, 0]
+   */
   firstGeneration() {
-    let rows = [
-      [1, 1, 0],
-      [1, 1, 0],
-      [0, 1, 0]
-    ];
-
-    let live = 5;
-
-    return [rows, live];
+    return {
+      numrows: 3,
+      numcols: 3,
+      aliveCoords: {
+        0: {0: null, 1: null},
+        1: {0: null, 1: null},
+        2: {1: null}
+      },
+      alive: 5
+    };
   },
 
+  /**
+   * Board:
+   *   [1, 1, 0],
+   *   [0, 0, 1],
+   *   [1, 1, 0]
+   */
   secondGeneration() {
-    let rows = [
-      [1, 1, 0],
-      [0, 0, 1],
-      [1, 1, 0]
-    ];
-
-    let live = 5;
-
-    return [rows, live];
+    return {
+      numrows: 3,
+      numcols: 3,
+      aliveCoords: {
+        0: {0: null, 1: null},
+        1: {2: null},
+        2: {0: null, 1: null}
+      },
+      alive: 5
+    };
   },
 
+  /**
+   * Board:
+   *   [0, 1, 0],
+   *   [0, 0, 1],
+   *   [0, 1, 0]
+   */
   thirdGeneration() {
-    let rows = [
-      [0, 1, 0],
-      [0, 0, 1],
-      [0, 1, 0]
-    ];
-
-    let live = 3;
-
-    return [rows, live];
+    return {
+      numrows: 3,
+      numcols: 3,
+      aliveCoords: {
+        0: {1: null},
+        1: {2: null},
+        2: {1: null}
+      },
+      alive: 3
+    };
   }
 
 };

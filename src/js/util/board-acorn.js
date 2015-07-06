@@ -1,23 +1,19 @@
-import Helpers from './board-helpers.js';
 
 export default {
 
-  rows() {
+  board() {
     let numrows = 18, numcols = 18;
-    let rows = Helpers.generateEmptyBoard(numrows, numcols);
-    let aliveCoords = [
-      [5, 7],
-      [5, 9],
-      [4, 9],
-      [7, 8],
-      [8, 9],
-      [9, 9],
-      [10, 9]
-    ];
+    let aliveCoords = {
+      9: {4: null, 5: null, 8: null, 9: null, 10: null},
+      7: {5: null},
+      8: {7: null}
+    };
 
-    Helpers.fillinAliveCells(rows, aliveCoords);
-
-    return rows;
+    return {
+      numrows: numrows,
+      numcols: numcols,
+      aliveCoords: aliveCoords
+    };
   }
 
 };

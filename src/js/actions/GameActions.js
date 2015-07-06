@@ -26,10 +26,10 @@ export default {
     });
   },
 
-  setRows(rows) {
+  setBoard(board) {
     Dispatcher.handleViewAction({
-      type: Constants.ActionTypes.ROWS_SET,
-      rows: rows
+      type: Constants.ActionTypes.BOARD_SET,
+      board: board
     });
   }
 };
