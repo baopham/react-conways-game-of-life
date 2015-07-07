@@ -20,9 +20,10 @@ export default {
     });
   },
 
-  reset() {
+  reset(board) {
     Dispatcher.handleViewAction({
-      type: Constants.ActionTypes.RESET
+      type: Constants.ActionTypes.RESET,
+      board: board
     });
   },
 

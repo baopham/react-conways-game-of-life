@@ -9,7 +9,6 @@ import Helpers from '../util/helpers.js';
 let state = initialState();
 let interval = null;
 let gol = null;
-let initialBoard = {};
 
 function initialState() {
   gol = null;
@@ -17,7 +16,7 @@ function initialState() {
   return {
     status: false,
     generations: 0,
-    board: initialBoard,
+    board: {},
     alive: 0
   };
 }
@@ -41,7 +40,6 @@ const GameStore = assign({}, BaseStore, {
     switch (action.type) {
       case Constants.ActionTypes.BOARD_SET:
         state.board = action.board;
-        initialBoard = Helpers.clone(action.board);
 
         GameStore.emitChange();
         break;
@@ -95,7 +93,7 @@ const GameStore = assign({}, BaseStore, {
       case Constants.ActionTypes.RESET:
         clearInterval(interval);
         state = initialState();
-        state.board = initialBoard;
+        state.board = action.board;
         GameStore.emitChange();
         break;
     }
