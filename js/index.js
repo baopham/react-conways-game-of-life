@@ -21244,9 +21244,10 @@ exports['default'] = {
     });
   },
 
-  reset: function reset() {
+  reset: function reset(board) {
     _Dispatcher2['default'].handleViewAction({
-      type: _Constants2['default'].ActionTypes.RESET
+      type: _Constants2['default'].ActionTypes.RESET,
+      board: board
     });
   },
 
@@ -21722,11 +21723,15 @@ var _reactBootstrapLibButton = require('react-bootstrap/lib/Button');
 
 var _reactBootstrapLibButton2 = _interopRequireDefault(_reactBootstrapLibButton);
 
+var _utilBoardAcornJs = require('../util/board-acorn.js');
+
+var _utilBoardAcornJs2 = _interopRequireDefault(_utilBoardAcornJs);
+
 exports['default'] = _react2['default'].createClass({
   displayName: 'ResetButton',
 
   _onClick: function _onClick() {
-    _actionsGameActionsJs2['default'].reset();
+    _actionsGameActionsJs2['default'].reset(_utilBoardAcornJs2['default'].board());
   },
 
   render: function render() {
@@ -21740,7 +21745,7 @@ exports['default'] = _react2['default'].createClass({
 module.exports = exports['default'];
 
 
-},{"../actions/GameActions.js":173,"react":170,"react-bootstrap/lib/Button":10}],183:[function(require,module,exports){
+},{"../actions/GameActions.js":173,"../util/board-acorn.js":188,"react":170,"react-bootstrap/lib/Button":10}],183:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -22037,7 +22042,6 @@ var _utilHelpersJs2 = _interopRequireDefault(_utilHelpersJs);
 var state = initialState();
 var interval = null;
 var gol = null;
-var initialBoard = {};
 
 function initialState() {
   gol = null;
@@ -22045,7 +22049,7 @@ function initialState() {
   return {
     status: false,
     generations: 0,
-    board: initialBoard,
+    board: {},
     alive: 0
   };
 }
@@ -22069,7 +22073,6 @@ var GameStore = (0, _objectAssign2['default'])({}, _BaseStore2['default'], {
     switch (action.type) {
       case _Constants2['default'].ActionTypes.BOARD_SET:
         state.board = action.board;
-        initialBoard = _utilHelpersJs2['default'].clone(action.board);
 
         GameStore.emitChange();
         break;
@@ -22123,7 +22126,7 @@ var GameStore = (0, _objectAssign2['default'])({}, _BaseStore2['default'], {
       case _Constants2['default'].ActionTypes.RESET:
         clearInterval(interval);
         state = initialState();
-        state.board = initialBoard;
+        state.board = action.board;
         GameStore.emitChange();
         break;
     }
